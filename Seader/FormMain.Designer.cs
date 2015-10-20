@@ -54,6 +54,7 @@
             this.backgroundWorkerUpdateFeed = new System.ComponentModel.BackgroundWorker();
             this.timerUpdateFeed = new System.Windows.Forms.Timer(this.components);
             this.toolStripMenuItemOpenBrowser = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
@@ -67,6 +68,7 @@
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonAddFeed,
             this.toolStripButtonUpdateFeeds,
+            this.toolStripSeparator2,
             this.toolStripDropDownButtonUpdateInterval,
             this.toolStripDropDownButtonConfig,
             this.toolStripLabelLoading});
@@ -286,6 +288,11 @@
             this.toolStripMenuItemOpenBrowser.Size = new System.Drawing.Size(174, 22);
             this.toolStripMenuItemOpenBrowser.Text = "Open(&O)";
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -335,6 +342,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopyUrl;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenBrowser;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 
