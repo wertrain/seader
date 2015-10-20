@@ -476,5 +476,27 @@ namespace Seader
             FeedTreeManager.FeedTreeNode node = (FeedTreeManager.FeedTreeNode)treeViewFeeds.SelectedNode;
             this.feedTreeManager.ReadAll(node);
         }
+        
+        /// <summary>
+        /// タイトルをコピーします。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripMenuItemCopyTitle_Click(object sender, EventArgs e)
+        {
+            FeedTreeManager.FeedTreeNode node = (FeedTreeManager.FeedTreeNode)treeViewFeeds.SelectedNode;
+            Clipboard.SetDataObject(node.Title, true);
+        }
+
+        /// <summary>
+        /// URLをコピーします。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripMenuItemCopyUrl_Click(object sender, EventArgs e)
+        {
+            FeedTreeManager.FeedTreeNode node = (FeedTreeManager.FeedTreeNode)treeViewFeeds.SelectedNode;
+            Clipboard.SetDataObject(node.Url.ToString(), true);
+        }
     }
 }

@@ -31,25 +31,29 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
-            this.splitContainerMain = new System.Windows.Forms.SplitContainer();
-            this.treeViewFeeds = new System.Windows.Forms.TreeView();
-            this.webBrowserPreviewFeed = new System.Windows.Forms.WebBrowser();
-            this.backgroundWorkerUpdateFeed = new System.ComponentModel.BackgroundWorker();
             this.toolStripButtonAddFeed = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonUpdateFeeds = new System.Windows.Forms.ToolStripButton();
             this.toolStripDropDownButtonUpdateInterval = new System.Windows.Forms.ToolStripDropDownButton();
-            this.timerUpdateFeed = new System.Windows.Forms.Timer(this.components);
             this.toolStripDropDownButtonConfig = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripLabelLoading = new System.Windows.Forms.ToolStripLabel();
             this.toolStripMenuItemOrientation = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemOrientationHorizontal = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemOrientationVertical = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageListTreeView = new System.Windows.Forms.ImageList(this.components);
-            this.buttonFeedPreviewClose = new System.Windows.Forms.Button();
+            this.toolStripLabelLoading = new System.Windows.Forms.ToolStripLabel();
+            this.splitContainerMain = new System.Windows.Forms.SplitContainer();
+            this.treeViewFeeds = new System.Windows.Forms.TreeView();
             this.contextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemRemoveFeed = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAlreadyRead = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAlreadyReadAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemCopyTitle = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCopyUrl = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageListTreeView = new System.Windows.Forms.ImageList(this.components);
+            this.buttonFeedPreviewClose = new System.Windows.Forms.Button();
+            this.webBrowserPreviewFeed = new System.Windows.Forms.WebBrowser();
+            this.backgroundWorkerUpdateFeed = new System.ComponentModel.BackgroundWorker();
+            this.timerUpdateFeed = new System.Windows.Forms.Timer(this.components);
+            this.toolStripMenuItemOpenBrowser = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
@@ -71,6 +75,80 @@
             this.toolStripMain.Size = new System.Drawing.Size(484, 25);
             this.toolStripMain.TabIndex = 0;
             this.toolStripMain.Text = "toolStrip1";
+            // 
+            // toolStripButtonAddFeed
+            // 
+            this.toolStripButtonAddFeed.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonAddFeed.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAddFeed.Image")));
+            this.toolStripButtonAddFeed.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAddFeed.Name = "toolStripButtonAddFeed";
+            this.toolStripButtonAddFeed.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonAddFeed.Text = "Add Feed";
+            this.toolStripButtonAddFeed.Click += new System.EventHandler(this.toolStripButtonAddFeed_Click);
+            // 
+            // toolStripButtonUpdateFeeds
+            // 
+            this.toolStripButtonUpdateFeeds.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonUpdateFeeds.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonUpdateFeeds.Image")));
+            this.toolStripButtonUpdateFeeds.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonUpdateFeeds.Name = "toolStripButtonUpdateFeeds";
+            this.toolStripButtonUpdateFeeds.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonUpdateFeeds.Text = "Update Feeds";
+            this.toolStripButtonUpdateFeeds.Click += new System.EventHandler(this.toolStripButtonUpdateFeeds_Click);
+            // 
+            // toolStripDropDownButtonUpdateInterval
+            // 
+            this.toolStripDropDownButtonUpdateInterval.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButtonUpdateInterval.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonUpdateInterval.Image")));
+            this.toolStripDropDownButtonUpdateInterval.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButtonUpdateInterval.Name = "toolStripDropDownButtonUpdateInterval";
+            this.toolStripDropDownButtonUpdateInterval.Size = new System.Drawing.Size(29, 22);
+            this.toolStripDropDownButtonUpdateInterval.Text = "Update Interval";
+            // 
+            // toolStripDropDownButtonConfig
+            // 
+            this.toolStripDropDownButtonConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButtonConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemOrientation});
+            this.toolStripDropDownButtonConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonConfig.Image")));
+            this.toolStripDropDownButtonConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButtonConfig.Name = "toolStripDropDownButtonConfig";
+            this.toolStripDropDownButtonConfig.Size = new System.Drawing.Size(29, 22);
+            this.toolStripDropDownButtonConfig.Text = "Config";
+            // 
+            // toolStripMenuItemOrientation
+            // 
+            this.toolStripMenuItemOrientation.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemOrientationHorizontal,
+            this.toolStripMenuItemOrientationVertical});
+            this.toolStripMenuItemOrientation.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemOrientation.Image")));
+            this.toolStripMenuItemOrientation.Name = "toolStripMenuItemOrientation";
+            this.toolStripMenuItemOrientation.Size = new System.Drawing.Size(151, 22);
+            this.toolStripMenuItemOrientation.Text = "Orientation(&O)";
+            // 
+            // toolStripMenuItemOrientationHorizontal
+            // 
+            this.toolStripMenuItemOrientationHorizontal.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemOrientationHorizontal.Image")));
+            this.toolStripMenuItemOrientationHorizontal.Name = "toolStripMenuItemOrientationHorizontal";
+            this.toolStripMenuItemOrientationHorizontal.Size = new System.Drawing.Size(146, 22);
+            this.toolStripMenuItemOrientationHorizontal.Text = "Horizontal(&H)";
+            this.toolStripMenuItemOrientationHorizontal.Click += new System.EventHandler(this.toolStripMenuItemOrientation_Click);
+            // 
+            // toolStripMenuItemOrientationVertical
+            // 
+            this.toolStripMenuItemOrientationVertical.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemOrientationVertical.Image")));
+            this.toolStripMenuItemOrientationVertical.Name = "toolStripMenuItemOrientationVertical";
+            this.toolStripMenuItemOrientationVertical.Size = new System.Drawing.Size(146, 22);
+            this.toolStripMenuItemOrientationVertical.Text = "Vertical(&V)";
+            this.toolStripMenuItemOrientationVertical.Click += new System.EventHandler(this.toolStripMenuItemOrientation_Click);
+            // 
+            // toolStripLabelLoading
+            // 
+            this.toolStripLabelLoading.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLabelLoading.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabelLoading.Image")));
+            this.toolStripLabelLoading.Name = "toolStripLabelLoading";
+            this.toolStripLabelLoading.Size = new System.Drawing.Size(26, 22);
+            this.toolStripLabelLoading.Text = " ";
             // 
             // splitContainerMain
             // 
@@ -105,125 +183,18 @@
             this.treeViewFeeds.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewFeeds_NodeMouseClick);
             this.treeViewFeeds.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewFeeds_NodeMouseDoubleClick);
             // 
-            // webBrowserPreviewFeed
-            // 
-            this.webBrowserPreviewFeed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowserPreviewFeed.Location = new System.Drawing.Point(0, 0);
-            this.webBrowserPreviewFeed.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowserPreviewFeed.Name = "webBrowserPreviewFeed";
-            this.webBrowserPreviewFeed.Size = new System.Drawing.Size(484, 283);
-            this.webBrowserPreviewFeed.TabIndex = 0;
-            // 
-            // backgroundWorkerUpdateFeed
-            // 
-            this.backgroundWorkerUpdateFeed.WorkerReportsProgress = true;
-            this.backgroundWorkerUpdateFeed.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerUpdateFeed_DoWork);
-            this.backgroundWorkerUpdateFeed.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerUpdateFeed_ProgressChanged);
-            this.backgroundWorkerUpdateFeed.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerUpdateFeed_RunWorkerCompleted);
-            // 
-            // toolStripButtonAddFeed
-            // 
-            this.toolStripButtonAddFeed.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonAddFeed.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAddFeed.Image")));
-            this.toolStripButtonAddFeed.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonAddFeed.Name = "toolStripButtonAddFeed";
-            this.toolStripButtonAddFeed.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonAddFeed.Text = "Add Feed";
-            this.toolStripButtonAddFeed.Click += new System.EventHandler(this.toolStripButtonAddFeed_Click);
-            // 
-            // toolStripButtonUpdateFeeds
-            // 
-            this.toolStripButtonUpdateFeeds.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonUpdateFeeds.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonUpdateFeeds.Image")));
-            this.toolStripButtonUpdateFeeds.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonUpdateFeeds.Name = "toolStripButtonUpdateFeeds";
-            this.toolStripButtonUpdateFeeds.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonUpdateFeeds.Text = "Update Feeds";
-            this.toolStripButtonUpdateFeeds.Click += new System.EventHandler(this.toolStripButtonUpdateFeeds_Click);
-            // 
-            // toolStripDropDownButtonUpdateInterval
-            // 
-            this.toolStripDropDownButtonUpdateInterval.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButtonUpdateInterval.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonUpdateInterval.Image")));
-            this.toolStripDropDownButtonUpdateInterval.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButtonUpdateInterval.Name = "toolStripDropDownButtonUpdateInterval";
-            this.toolStripDropDownButtonUpdateInterval.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButtonUpdateInterval.Text = "Update Interval";
-            // 
-            // timerUpdateFeed
-            // 
-            this.timerUpdateFeed.Tick += new System.EventHandler(this.timerUpdateFeed_Tick);
-            // 
-            // toolStripDropDownButtonConfig
-            // 
-            this.toolStripDropDownButtonConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButtonConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemOrientation});
-            this.toolStripDropDownButtonConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonConfig.Image")));
-            this.toolStripDropDownButtonConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButtonConfig.Name = "toolStripDropDownButtonConfig";
-            this.toolStripDropDownButtonConfig.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButtonConfig.Text = "Config";
-            // 
-            // toolStripLabelLoading
-            // 
-            this.toolStripLabelLoading.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripLabelLoading.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabelLoading.Image")));
-            this.toolStripLabelLoading.Name = "toolStripLabelLoading";
-            this.toolStripLabelLoading.Size = new System.Drawing.Size(26, 22);
-            this.toolStripLabelLoading.Text = " ";
-            // 
-            // toolStripMenuItemOrientation
-            // 
-            this.toolStripMenuItemOrientation.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemOrientationHorizontal,
-            this.toolStripMenuItemOrientationVertical});
-            this.toolStripMenuItemOrientation.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemOrientation.Image")));
-            this.toolStripMenuItemOrientation.Name = "toolStripMenuItemOrientation";
-            this.toolStripMenuItemOrientation.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemOrientation.Text = "Orientation(&O)";
-            // 
-            // toolStripMenuItemOrientationHorizontal
-            // 
-            this.toolStripMenuItemOrientationHorizontal.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemOrientationHorizontal.Image")));
-            this.toolStripMenuItemOrientationHorizontal.Name = "toolStripMenuItemOrientationHorizontal";
-            this.toolStripMenuItemOrientationHorizontal.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemOrientationHorizontal.Text = "Horizontal(&H)";
-            this.toolStripMenuItemOrientationHorizontal.Click += new System.EventHandler(this.toolStripMenuItemOrientation_Click);
-            // 
-            // toolStripMenuItemOrientationVertical
-            // 
-            this.toolStripMenuItemOrientationVertical.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemOrientationVertical.Image")));
-            this.toolStripMenuItemOrientationVertical.Name = "toolStripMenuItemOrientationVertical";
-            this.toolStripMenuItemOrientationVertical.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemOrientationVertical.Text = "Vertical(&V)";
-            this.toolStripMenuItemOrientationVertical.Click += new System.EventHandler(this.toolStripMenuItemOrientation_Click);
-            // 
-            // imageListTreeView
-            // 
-            this.imageListTreeView.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageListTreeView.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageListTreeView.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // buttonFeedPreviewClose
-            // 
-            this.buttonFeedPreviewClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonFeedPreviewClose.Image = ((System.Drawing.Image)(resources.GetObject("buttonFeedPreviewClose.Image")));
-            this.buttonFeedPreviewClose.Location = new System.Drawing.Point(446, 1);
-            this.buttonFeedPreviewClose.Name = "buttonFeedPreviewClose";
-            this.buttonFeedPreviewClose.Size = new System.Drawing.Size(20, 20);
-            this.buttonFeedPreviewClose.TabIndex = 1;
-            this.buttonFeedPreviewClose.UseVisualStyleBackColor = true;
-            this.buttonFeedPreviewClose.Click += new System.EventHandler(this.buttonFeedPreviewClose_Click);
-            // 
             // contextMenuStripTreeView
             // 
             this.contextMenuStripTreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemOpenBrowser,
             this.toolStripMenuItemRemoveFeed,
             this.toolStripMenuItemAlreadyRead,
-            this.toolStripMenuItemAlreadyReadAll});
+            this.toolStripMenuItemAlreadyReadAll,
+            this.toolStripSeparator1,
+            this.toolStripMenuItemCopyTitle,
+            this.toolStripMenuItemCopyUrl});
             this.contextMenuStripTreeView.Name = "contextMenuStripTreeView";
-            this.contextMenuStripTreeView.Size = new System.Drawing.Size(175, 70);
+            this.contextMenuStripTreeView.Size = new System.Drawing.Size(175, 142);
             this.contextMenuStripTreeView.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripTreeView_Opening);
             // 
             // toolStripMenuItemRemoveFeed
@@ -249,6 +220,71 @@
             this.toolStripMenuItemAlreadyReadAll.Size = new System.Drawing.Size(174, 22);
             this.toolStripMenuItemAlreadyReadAll.Text = "Already Read All(&E)";
             this.toolStripMenuItemAlreadyReadAll.Click += new System.EventHandler(this.toolStripMenuItemAlreadyReadAll_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(171, 6);
+            // 
+            // toolStripMenuItemCopyTitle
+            // 
+            this.toolStripMenuItemCopyTitle.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemCopyTitle.Image")));
+            this.toolStripMenuItemCopyTitle.Name = "toolStripMenuItemCopyTitle";
+            this.toolStripMenuItemCopyTitle.Size = new System.Drawing.Size(174, 22);
+            this.toolStripMenuItemCopyTitle.Text = "Copy Title(&T)";
+            this.toolStripMenuItemCopyTitle.Click += new System.EventHandler(this.toolStripMenuItemCopyTitle_Click);
+            // 
+            // toolStripMenuItemCopyUrl
+            // 
+            this.toolStripMenuItemCopyUrl.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemCopyUrl.Image")));
+            this.toolStripMenuItemCopyUrl.Name = "toolStripMenuItemCopyUrl";
+            this.toolStripMenuItemCopyUrl.Size = new System.Drawing.Size(174, 22);
+            this.toolStripMenuItemCopyUrl.Text = "Copy URL(&U)";
+            this.toolStripMenuItemCopyUrl.Click += new System.EventHandler(this.toolStripMenuItemCopyUrl_Click);
+            // 
+            // imageListTreeView
+            // 
+            this.imageListTreeView.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageListTreeView.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageListTreeView.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // buttonFeedPreviewClose
+            // 
+            this.buttonFeedPreviewClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonFeedPreviewClose.Image = ((System.Drawing.Image)(resources.GetObject("buttonFeedPreviewClose.Image")));
+            this.buttonFeedPreviewClose.Location = new System.Drawing.Point(446, 1);
+            this.buttonFeedPreviewClose.Name = "buttonFeedPreviewClose";
+            this.buttonFeedPreviewClose.Size = new System.Drawing.Size(20, 20);
+            this.buttonFeedPreviewClose.TabIndex = 1;
+            this.buttonFeedPreviewClose.UseVisualStyleBackColor = true;
+            this.buttonFeedPreviewClose.Click += new System.EventHandler(this.buttonFeedPreviewClose_Click);
+            // 
+            // webBrowserPreviewFeed
+            // 
+            this.webBrowserPreviewFeed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowserPreviewFeed.Location = new System.Drawing.Point(0, 0);
+            this.webBrowserPreviewFeed.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowserPreviewFeed.Name = "webBrowserPreviewFeed";
+            this.webBrowserPreviewFeed.Size = new System.Drawing.Size(484, 283);
+            this.webBrowserPreviewFeed.TabIndex = 0;
+            // 
+            // backgroundWorkerUpdateFeed
+            // 
+            this.backgroundWorkerUpdateFeed.WorkerReportsProgress = true;
+            this.backgroundWorkerUpdateFeed.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerUpdateFeed_DoWork);
+            this.backgroundWorkerUpdateFeed.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerUpdateFeed_ProgressChanged);
+            this.backgroundWorkerUpdateFeed.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerUpdateFeed_RunWorkerCompleted);
+            // 
+            // timerUpdateFeed
+            // 
+            this.timerUpdateFeed.Tick += new System.EventHandler(this.timerUpdateFeed_Tick);
+            // 
+            // toolStripMenuItemOpenBrowser
+            // 
+            this.toolStripMenuItemOpenBrowser.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemOpenBrowser.Image")));
+            this.toolStripMenuItemOpenBrowser.Name = "toolStripMenuItemOpenBrowser";
+            this.toolStripMenuItemOpenBrowser.Size = new System.Drawing.Size(174, 22);
+            this.toolStripMenuItemOpenBrowser.Text = "Open(&O)";
             // 
             // FormMain
             // 
@@ -295,6 +331,10 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRemoveFeed;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAlreadyReadAll;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAlreadyRead;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopyTitle;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopyUrl;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenBrowser;
     }
 }
 
