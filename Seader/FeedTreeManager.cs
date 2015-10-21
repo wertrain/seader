@@ -205,7 +205,6 @@ namespace Seader
         public void ReflectTreeView(ref TreeView treeView)
         {
             treeView.ImageList.Images.Clear();
-            treeView.Nodes.Clear();
             foreach (var image in this.faviconList)
             {
                 treeView.ImageList.Images.Add(image);
@@ -217,7 +216,6 @@ namespace Seader
                 // ここで変更を反映させる
                 node.Text = node.Title;
                 node.ImageIndex = node.IconIndex;
-                node.Nodes.Clear();
 
                 foreach (FeedTreeNode child in this.childNodeList[node])
                 {
@@ -226,10 +224,16 @@ namespace Seader
                         child.Text = child.Title;
                         child.ImageIndex = child.IconIndex;
                         child.SelectedImageIndex = child.IconIndex;
-                        node.Nodes.Add(child);
+                        if (false == node.Nodes.Contains(child))
+                        {
+                            node.Nodes.Add(child);
+                        }                        
                     }
                 }
-                treeView.Nodes.Add(node);
+                if (false == treeView.Nodes.Contains(node))
+                {
+                    treeView.Nodes.Add(node);
+                }
             }
         }
     }
