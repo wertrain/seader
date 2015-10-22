@@ -441,6 +441,23 @@ namespace Seader
             }
         }
 
+
+        /// <summary>
+        /// コンテキストメニューの開くを押した時のイベントです。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripMenuItemOpenBrowser_Click(object sender, EventArgs e)
+        {
+            FeedTreeManager.FeedTreeNode node = (FeedTreeManager.FeedTreeNode)treeViewFeeds.SelectedNode;
+            if (node.Url.ToString().Length > 0)
+            {
+                System.Diagnostics.Process.Start(node.Url.ToString());
+                node.Read = true;
+                treeViewFeeds.Nodes.Remove(node);
+            }
+        }
+
         /// <summary>
         /// コンテキストメニューのフィード削除を押した時のイベントです。
         /// </summary>
