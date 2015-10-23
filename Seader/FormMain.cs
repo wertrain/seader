@@ -22,6 +22,10 @@ namespace Seader
 
             InitializeComponent();
 
+            System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
+            System.Version version = asm.GetName().Version;
+            Text += " " + version;
+
             this.feedTreeManager = new FeedTreeManager();
             this.settingsManager = new SettingsManager();
 
