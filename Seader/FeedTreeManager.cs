@@ -216,6 +216,7 @@ namespace Seader
                 // ここで変更を反映させる
                 node.Text = node.Title;
                 node.ImageIndex = node.IconIndex;
+                node.SelectedImageIndex = node.IconIndex;
 
                 foreach (FeedTreeNode child in this.childNodeList[node])
                 {
