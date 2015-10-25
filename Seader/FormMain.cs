@@ -63,7 +63,7 @@ namespace Seader
             bool validInterval = false;
             for (var i = 0; i < Constants.GetIntervalList.Length; ++i)
             {
-                if (settingsManager.Setting.FeedsUpdateInterval == Constants.GetIntervalList[i])
+                if (this.settingsManager.Setting.FeedsUpdateInterval == Constants.GetIntervalList[i])
                 {
                     validInterval = true;
                     break;
@@ -71,8 +71,13 @@ namespace Seader
             }
             if (false == validInterval)
             {
-                settingsManager.Setting.FeedsUpdateInterval = Constants.GetIntervalList[3];
+                this.settingsManager.Setting.FeedsUpdateInterval = Constants.GetIntervalList[3];
             }
+
+            timerUpdateFeed.Enabled = true;
+            timerUpdateFeed.Interval = 1000 * 60 * this.settingsManager.Setting.FeedsUpdateInterval;
+            timerUpdateFeed.Start();
+
             // メニューの構築
             for (var i = 0; i < Constants.GetIntervalList.Length; ++i)
             {
