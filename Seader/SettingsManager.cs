@@ -24,7 +24,7 @@ namespace Seader
         {
             try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+                XmlSerializer serializer = XmlSerializer.FromTypes(new[] { typeof(Settings) })[0];
                 using (FileStream fs = new FileStream(this.settingsFilePath, FileMode.Create))
                 {
                     serializer.Serialize(fs, this.settings);
@@ -41,7 +41,7 @@ namespace Seader
         {
             try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+                XmlSerializer serializer = XmlSerializer.FromTypes(new[] { typeof(Settings) })[0];
                 using (FileStream fs = new FileStream(this.settingsFilePath, FileMode.Open))
                 {
                     this.settings = (Settings)serializer.Deserialize(fs);

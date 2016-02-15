@@ -26,7 +26,7 @@ namespace Seader.Feed
             {
                 rssXml.Load(uri.ToString());
             }
-            catch (System.Net.WebException e)
+            catch (System.Net.WebException)
             {
                 return null;
             }
