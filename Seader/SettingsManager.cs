@@ -76,6 +76,7 @@ namespace Seader
         private Size formSize;
         private int feedsUpdateInterval;
         private Orientation orientation;
+        private string dummyUserAgent;
 
         [System.Xml.Serialization.XmlArrayItem(typeof(string))]
         private List<string> feedUrls;
@@ -87,6 +88,7 @@ namespace Seader
             this.formSize = new Size(500, 600);
             this.feedsUpdateInterval = 30;
             this.orientation = Orientation.Horizontal;
+            this.dummyUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)";
         }
 
         public int SplitterDistance
@@ -116,6 +118,12 @@ namespace Seader
         {
             get { return this.orientation; }
             set { this.orientation = value; }
+        }
+
+        public string DummyUserAgent
+        {
+            get { return this.dummyUserAgent; }
+            set { this.dummyUserAgent = value; }
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.ServiceModel.Syndication;
+using System.Net;
+using System.IO;
 
 namespace Seader.Feed
 {
@@ -16,15 +18,32 @@ namespace Seader.Feed
         /// RSSの読み込みを行います。
         /// </summary>
         /// <param name="uri">フィードのURL</param>
+        /// <param name="userAgent">偽装するユーザーエージェント</param>
         /// <returns>フィード</returns>
-        public FeedInfo Read(Uri uri)
+        public FeedInfo Read(Uri uri, string userAgent = null)
         {
             FeedInfo info = null;
 
             XmlDocument rssXml = new XmlDocument();
             try
             {
-                rssXml.Load(uri.ToString());
+                if (userAgent == null || userAgent.Length == 0)
+                {
+                    rssXml.Load(uri.ToString());
+                }
+                else
+                {
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri.ToString());
+                    request.UserAgent = userAgent;
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                    using (Stream stream = response.GetResponseStream())
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        string content = reader.ReadToEnd();
+                        rssXml.LoadXml(content);
+                    }
+                }
             }
             catch (System.Net.WebException)
             {
@@ -39,7 +58,7 @@ namespace Seader.Feed
             string nodeTag = element.Name;
             if (nodeTag == "rdf:RDF")
             {
-                info = ReadRSS1(uri);
+                info = ReadRSS1(uri, rssXml);
             }
             else if (nodeTag == "rss")
             {
@@ -53,30 +72,28 @@ namespace Seader.Feed
         /// RSS 1.0の読み込みを行います。
         /// </summary>
         /// <param name="uri">フィードのURL</param>
+        /// <param name="rssXml">読み込み済みのXMLドキュメント</param>
         /// <returns>フィード</returns>
-        private FeedInfo ReadRSS1(Uri uri)
+        private FeedInfo ReadRSS1(Uri uri, XmlDocument rssXml)
         {
             FeedInfo info = new FeedInfo();
             info.Url = uri;
 
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(uri.ToString());
-
             List<FeedItem> ret = new List<FeedItem>();
 
-            XmlNamespaceManager nsmgr = new XmlNamespaceManager(xmlDoc.NameTable);
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(rssXml.NameTable);
             nsmgr.AddNamespace("rss", "http://purl.org/rss/1.0/");
             nsmgr.AddNamespace("content", "http://purl.org/rss/1.0/modules/content/");
             nsmgr.AddNamespace("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
             nsmgr.AddNamespace("dc", "http://purl.org/dc/elements/1.1/");
 
-            XmlNodeList linodes = xmlDoc.SelectNodes("/rdf:RDF/rss:channel/rss:items/rdf:Seq/rdf:li", nsmgr);
+            XmlNodeList linodes = rssXml.SelectNodes("/rdf:RDF/rss:channel/rss:items/rdf:Seq/rdf:li", nsmgr);
 
             foreach (XmlNode node in linodes)
             {
                 string strResource = node.Attributes["resource", "http://www.w3.org/1999/02/22-rdf-syntax-ns#"].Value;
 
-                XmlNode aboutItem = xmlDoc.SelectSingleNode("/rdf:RDF/rss:item[@rdf:about='" + strResource + "']", nsmgr);
+                XmlNode aboutItem = rssXml.SelectSingleNode("/rdf:RDF/rss:item[@rdf:about='" + strResource + "']", nsmgr);
 
                 if (aboutItem != null)
                 {
@@ -116,7 +133,7 @@ namespace Seader.Feed
                 }
             }
             info.Items = ret.ToArray();
-            info.Title = xmlDoc.SelectSingleNode("/rdf:RDF/rss:channel/rss:title", nsmgr).InnerText;
+            info.Title = rssXml.SelectSingleNode("/rdf:RDF/rss:channel/rss:title", nsmgr).InnerText;
             return info;
         }
 
@@ -145,9 +162,7 @@ namespace Seader.Feed
                                  Date = item.PublishDate.DateTime,
                                  Link = link.Uri
                              }).ToArray()
-
                 };
-
             }
         }
 

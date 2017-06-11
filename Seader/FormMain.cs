@@ -34,6 +34,12 @@ namespace Seader
             renderer.RoundedEdges = false;
             toolStripMain.Renderer = renderer;
 
+            // ブラウザのエラー表示が鬱陶しいので OFF にする
+            // https://stackoverflow.com/questions/2476360/disable-javascript-error-in-webbrowser-control
+            // 一部 JavaScript の動作にも影響がでるそうだが、今回の用途だとまぁ問題なさそう
+            // エラーが出る原因としては内部的には IE7 相当のエンジンで動いているらしい
+            webBrowserPreviewFeed.ScriptErrorsSuppressed = true;
+
             ReadSettings();
 
             Hashtable workerArgs = new Hashtable();
@@ -115,7 +121,7 @@ namespace Seader
             if (args.ContainsKey("Url"))
             {
                 Uri uri = new Uri((string)args["Url"]);
-                Feed.FeedInfo info = feedReader.Read(uri);
+                Feed.FeedInfo info = feedReader.Read(uri, settingsManager.Setting.DummyUserAgent);
 
                 if (null == info)
                 {
@@ -134,7 +140,7 @@ namespace Seader
                 foreach (var url in settingsManager.Setting.FeedUrls)
                 {
                     var uri = new Uri(url);
-                    var feed = feedReader.Read(uri);
+                    var feed = feedReader.Read(uri, settingsManager.Setting.DummyUserAgent);
                     this.feedTreeManager.UpdateFeed(feed);
                 }
             }
