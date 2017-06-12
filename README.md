@@ -5,4 +5,4 @@ Seader is **S**imple f**e**ed re**ader**.
 ![Screenshot](https://github.com/wertrain/seader/blob/master/Seader/Resources/screenshot.png)
 
 ## Download
-[Version 1.2.0.0](https://wertrain.github.io/software/Seader.zip "Seader.zip")
+[Version 1.3.0.0](https://wertrain.github.io/software/Seader.zip "Seader.zip")
