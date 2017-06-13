@@ -382,7 +382,7 @@ namespace Seader
         }
 
         /// <summary>
-        /// 
+        /// Feed を追加するときのダイアログを作成・表示します。
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
