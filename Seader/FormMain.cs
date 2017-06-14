@@ -97,6 +97,26 @@ namespace Seader
         }
 
         /// <summary>
+        /// フォームが閉じられた時のイベントです。
+        /// 設定データのセットと書き込みを行います。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            settingsManager.Setting.FormSize = new Size(this.Width, this.Height);
+            settingsManager.Setting.SplitterDistance = splitContainerMain.SplitterDistance;
+            settingsManager.Setting.Orientation = splitContainerMain.Orientation;
+
+            if (false == settingsManager.Write())
+            {
+                //MessageBox.Show(this.resources.GetString("SaveErrorDialogBody") + "\n\n" + settingsManager.FilePath, this.resources.GetString("SaveErrorDialogTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to save the settings file.\n\n\"" + settingsManager.FilePath + "\"\n\nWrite to this path may not have been allowed.", "File save error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #region バックグラウンド処理
+        /// <summary>
         /// バックグラウンドでの処理を行います。
         /// フィードの更新処理を行います。
         /// 設定パラメータは Hashtable で指定します。
@@ -204,7 +224,9 @@ namespace Seader
                 }
             }
         }
+        #endregion
 
+        #region UIイベント
         /// <summary>
         /// ツリービューのノードがクリックされた時のイベントです。
         /// ノードの記事をプレビュー用のブラウザで開きます。
@@ -258,25 +280,6 @@ namespace Seader
                     TreeView tree = (TreeView)sender;
                     tree.Nodes.Remove(e.Node);
                 }
-            }
-        }
-
-        /// <summary>
-        /// フォームが閉じられた時のイベントです。
-        /// 設定データのセットと書き込みを行います。
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            settingsManager.Setting.FormSize = new Size(this.Width, this.Height);
-            settingsManager.Setting.SplitterDistance = splitContainerMain.SplitterDistance;
-            settingsManager.Setting.Orientation = splitContainerMain.Orientation;
-
-            if (false == settingsManager.Write())
-            {
-                //MessageBox.Show(this.resources.GetString("SaveErrorDialogBody") + "\n\n" + settingsManager.FilePath, this.resources.GetString("SaveErrorDialogTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MessageBox.Show("Failed to save the settings file.\n\n\"" + settingsManager.FilePath + "\"\n\nWrite to this path may not have been allowed.", "File save error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -380,54 +383,9 @@ namespace Seader
             item.Checked = true;
             splitContainerMain.Orientation = (item == toolStripMenuItemOrientationHorizontal) ? Orientation.Horizontal : Orientation.Vertical;
         }
+        #endregion
 
-        /// <summary>
-        /// Feed を追加するときのダイアログを作成・表示します。
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        private DialogResult ShowInputDialog(ref string input)
-        {
-            System.Drawing.Size size = new System.Drawing.Size(220, 70);
-            Form inputBox = new Form();
-
-            inputBox.Icon = Icon;
-            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            inputBox.MaximizeBox = false;
-            inputBox.ClientSize = size;
-            inputBox.Text = "Feed URL";
-            inputBox.StartPosition = FormStartPosition.CenterParent;
-
-            System.Windows.Forms.TextBox textBox = new TextBox();
-            textBox.Size = new System.Drawing.Size(size.Width - 20, 23);
-            textBox.Location = new System.Drawing.Point(10, 10);
-            textBox.Text = input;
-            inputBox.Controls.Add(textBox);
-
-            Button okButton = new Button();
-            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            okButton.Name = "okButton";
-            okButton.Size = new System.Drawing.Size(75, 23);
-            okButton.Text = "&OK(&O)";
-            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
-            inputBox.Controls.Add(okButton);
-
-            Button cancelButton = new Button();
-            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            cancelButton.Name = "cancelButton";
-            cancelButton.Size = new System.Drawing.Size(75, 23);
-            cancelButton.Text = "&Cancel(&C)";
-            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
-            inputBox.Controls.Add(cancelButton);
-
-            inputBox.AcceptButton = okButton;
-            inputBox.CancelButton = cancelButton;
-
-            DialogResult result = inputBox.ShowDialog();
-            input = textBox.Text;
-            return result;
-        }
-
+        #region コンテキストメニュー
         /// <summary>
         /// コンテキストメニューを開く時のイベントです。
         /// </summary>
@@ -529,6 +487,54 @@ namespace Seader
         {
             FeedTreeManager.FeedTreeNode node = (FeedTreeManager.FeedTreeNode)treeViewFeeds.SelectedNode;
             Clipboard.SetDataObject(node.Url.ToString(), true);
+        }
+        #endregion
+
+        /// <summary>
+        /// Feed を追加するときのダイアログを作成・表示します。
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private DialogResult ShowInputDialog(ref string input)
+        {
+            System.Drawing.Size size = new System.Drawing.Size(220, 70);
+            Form inputBox = new Form();
+
+            inputBox.Icon = Icon;
+            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            inputBox.MaximizeBox = false;
+            inputBox.ClientSize = size;
+            inputBox.Text = "Feed URL";
+            inputBox.StartPosition = FormStartPosition.CenterParent;
+
+            System.Windows.Forms.TextBox textBox = new TextBox();
+            textBox.Size = new System.Drawing.Size(size.Width - 20, 23);
+            textBox.Location = new System.Drawing.Point(10, 10);
+            textBox.Text = input;
+            inputBox.Controls.Add(textBox);
+
+            Button okButton = new Button();
+            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(75, 23);
+            okButton.Text = "&OK(&O)";
+            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
+            inputBox.Controls.Add(okButton);
+
+            Button cancelButton = new Button();
+            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(75, 23);
+            cancelButton.Text = "&Cancel(&C)";
+            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
+            inputBox.Controls.Add(cancelButton);
+
+            inputBox.AcceptButton = okButton;
+            inputBox.CancelButton = cancelButton;
+
+            DialogResult result = inputBox.ShowDialog();
+            input = textBox.Text;
+            return result;
         }
     }
 }
